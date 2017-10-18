@@ -9,6 +9,7 @@
   "author": "Tanmoy Mitra <tanmoymitra@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "apiai": "^4.0.3",
     "dotenv": "^4.0.0",
     "node-telegram-bot-api": "^0.28.0"
   }
