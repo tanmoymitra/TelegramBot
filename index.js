@@ -10,13 +10,15 @@ const bot = new TelegramBot(TOKEN, {polling: true});
 bot.setWebHook(`${url}/bot${TOKEN}`);
 
 bot.on('message', function onMessage(msg) {
-    //bot.sendMessage(msg.chat.id, 'Welcome '+msg.chat.first_name+' '+msg.chat.last_name);
+    console.log("User: "+msg.text);
     let apiai = apiaiApp.textRequest(msg.text, {
         sessionId: 'tabby_cat' // use any arbitrary id
     });
     apiai.on('response', (response) => {
-        let aiText = response.result.fulfillment.speech;
-        bot.sendMessage(msg.chat.id, aiText);
+        let aiText = response.result.fulfillment.speech || "Sorry! Can you please say it again";
+        console.log("Bot: "+aiText);
+        //bot.sendMessage(msg.chat.id, aiText);
+        bot.sendMessage(msg.chat.id,"<a href=\"http://www.zoodel.com/en\">Zoodel</a>",{parse_mode : "HTML"} );
     });
     apiai.on('error', (error) => {
         console.log(error);
